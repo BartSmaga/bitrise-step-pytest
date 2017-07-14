@@ -1,0 +1,129 @@
+#
+# A couple of useful guides & docs:
+#
+# - Main Bitrise CLI docs: https://github.com/bitrise-io/bitrise/tree/master/_docs
+# - Step Development Guideline: https://github.com/bitrise-io/bitrise/blob/master/_docs/step-development-guideline.md
+# - Bitrise.yml format spec: https://github.com/bitrise-io/bitrise/blob/master/_docs/bitrise-yml-format-spec.md
+# - Bitrise docs: http://devcenter.bitrise.io/
+# - Bitrise CLI guides: http://devcenter.bitrise.io/bitrise-cli/
+
+title: |-
+  pytest
+summary: |
+  Runs pytest
+description: |
+  Setups the environment and runs spcified tests with pytest
+website: https://github.com/pokryfka/bitrise-step-pytest
+source_code_url: https://github.com/pokryfka/bitrise-step-pytest
+support_url: https://github.com/pokryfka/bitrise-step-pytest
+host_os_tags:
+  - osx-10.10
+  - ubuntu-16.04
+
+# If this step should be available only for certain project types
+# just uncomment this `project_type_tags` section and include all the
+# project types supported by the step. If the step can be used for all
+# project types then you can just remove this section.
+# If no `project_type_tags` specified (or specified as an empty array)
+# that means the step can be used for any project type.
+# You can find more information about project type tags in the Step Development Guideline:
+# https://github.com/bitrise-io/bitrise/blob/master/_docs/step-development-guideline.md
+#
+# project_type_tags:
+#   - ios
+#   - macos
+#   - android
+#   - xamarin
+#   - react-native
+#   - cordova
+#   - ionic
+
+# Type tags are used for categorizing steps, for easier step discovery in Step Libraries.
+# You can find more information about type tags in the Step Development Guideline:
+# https://github.com/bitrise-io/bitrise/blob/master/_docs/step-development-guideline.md
+type_tags:
+  - test
+
+is_requires_admin_user: true
+is_always_run: false
+is_skippable: false
+run_if: ""
+
+deps:
+  brew:
+  - name: python3
+  apt_get:
+  - name: python3
+  - name: python3-pip
+
+
+toolkit:
+  bash:
+    entry_file: step.sh
+
+
+inputs:
+  - files_and_dirs: "."
+    opts:
+      title: "Files and directories to test"
+      summary: ""
+      description: ""
+      is_required: true
+      category: pytest
+  - junit_file_path: "${BITRISE_DEPLOY_DIR}/results.xml"
+    opts:
+      title: "JUnit results file path"
+      summary: ""
+      description: ""
+      is_required: false
+      category: pytest
+  - pytest_options: "-v"
+    opts:
+      title: "Extra pytest options"
+      summary: ""
+      description: |
+        See https://docs.pytest.org/en/latest/index.html
+      is_required: false
+      category: pytest
+  - virtualenv: false
+    opts:
+      title: "If true pytest is run in virtualenv"
+      summary: ""
+      description: ""
+      is_required: false
+      category: environment
+  - debug: false
+    opts:
+      title: "If true prints additional debug messages"
+      summary: ""
+      description: ""
+      is_required: false
+      category: environment
+  - appium_enabled: false
+    opts:
+      title: "If true Appium is installed and run before tests are started"
+      summary: ""
+      description: ""
+      is_required: false
+      category: appium
+  - appium_port: 4723
+    opts:
+      title: "Appium server port"
+      summary: ""
+      description: ""
+      is_required: false
+      category: appium
+  - appium_log_path: "${BITRISE_DEPLOY_DIR}/appium.log"
+    opts:
+      title: "Appium logfile path"
+      summary: ""
+      description: ""
+      is_required: false
+      category: appium
+
+outputs:
+  - PYTEST_JUNIT_PATH:
+    opts:
+      title: "Pytest JUnit results file path"
+      summary: ""
+      description: ""
