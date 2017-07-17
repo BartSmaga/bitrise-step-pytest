@@ -13,9 +13,9 @@ summary: |
   Runs pytest
 description: |
   Setups the environment and runs spcified tests with pytest
-website: https://github.com/pokryfka/bitrise-step-pytest
-source_code_url: https://github.com/pokryfka/bitrise-step-pytest
-support_url: https://github.com/pokryfka/bitrise-step-pytest
+website: https://github.com/SmagaBakery/bitrise-step-pytest
+source_code_url: https://github.com/SmagaBakery/bitrise-step-pytest
+support_url: https://github.com/SmagaBakery/bitrise-step-pytest
 host_os_tags:
   - osx-10.10
   - ubuntu-16.04
