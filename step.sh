@@ -39,7 +39,7 @@ if [ "${virtualenv}" == "true" ] ; then
 
     virtualenv ve
     echo "After virtualenv ."
-    source .ve/bin/activate
+    source ./ve/bin/activate
     echo "After source ./bin/activate"
     echo "Before install requirementsv
     pip3 install -r ${REQUIREMENTS_PATH}
