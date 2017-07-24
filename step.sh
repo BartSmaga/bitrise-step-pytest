@@ -28,15 +28,11 @@ if [ -n "${files_and_dirs}" ] ; then
     PYTEST_OPT+=" ${files_and_dirs}"
 fi
 
-if [ -n "${requirements_path}" ] ; then
-    REQUIREMENTS_PATH="${requirements_path}"
-fi
-
 if [ "${virtualenv}" == "true" ] ; then
     pip3 install virtualenv
     virtualenv .
     source ./bin/activate
-    pip3 install -r ${REQUIREMENTS_PATH}
+    pip3 install -r requirements.txt
 fi
 
 if [ "${appium_enabled}" == "true" ] ; then
