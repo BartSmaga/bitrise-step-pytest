@@ -36,7 +36,8 @@ if [ "${virtualenv}" == "true" ] ; then
     echo "Before virtualenv"
     pip3 install virtualenv
     echo "After virtualenv"
-    virtualenv .
+    rm -rf ve
+    virtualenv ve
     echo "After virtualenv ."
     source ./bin/activate
     echo "After source ./bin/activate"
