@@ -33,6 +33,7 @@ if [ -n "${requirements_path}" ] ; then
 fi
 
 if [ "${virtualenv}" == "true" ] ; then
+    pip3 uninstall virtualenv
     pip3 install virtualenv
     virtualenv .
     source ./bin/activate
