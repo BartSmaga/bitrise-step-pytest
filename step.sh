@@ -33,11 +33,14 @@ if [ -n "${requirements_path}" ] ; then
 fi
 
 if [ "${virtualenv}" == "true" ] ; then
-    pip3 uninstall virtualenv
+    echo "Before virtualenv"
     pip3 install virtualenv
+    echo "After virtualenv"
     virtualenv .
     source ./bin/activate
+    echo "Before install requirementsv
     pip3 install -r ${REQUIREMENTS_PATH}
+    echo "After install requirementsv
 fi
 
 if [ "${appium_enabled}" == "true" ] ; then
