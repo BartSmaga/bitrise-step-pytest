@@ -70,6 +70,13 @@ inputs:
       description: ""
       is_required: true
       category: pytest
+  - requirements_path: "requirements.txt"
+    opts:
+      title: "Path to requirements"
+      summary: ""
+      description: ""
+      is_required: true
+      category: pytest
   - junit_file_path: "${BITRISE_DEPLOY_DIR}/results.xml"
     opts:
       title: "JUnit results file path"

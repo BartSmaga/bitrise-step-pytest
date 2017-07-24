@@ -9,6 +9,8 @@ fi
 
 PYTEST_OPT=""
 
+REQUIREMENTS_PATH=requirements.txt
+
 PYTEST_OPT+=" --ignore=bin --ignore=lib --ignore=include --ignore=selenium"
 
 if [ -n "${junit_file_path}" ] ; then
@@ -26,11 +28,15 @@ if [ -n "${files_and_dirs}" ] ; then
     PYTEST_OPT+=" ${files_and_dirs}"
 fi
 
+if [ -n "${requirements_path}" ] ; then
+    REQUIREMENTS_PATH="${requirements_path}"
+fi
+
 if [ "${virtualenv}" == "true" ] ; then
     pip3 install virtualenv
     virtualenv .
     source ./bin/activate
-    pip3 install -r requirements.txt
+    pip3 install -r REQUIREMENTS_PATH
 fi
 
 if [ "${appium_enabled}" == "true" ] ; then
