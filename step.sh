@@ -36,7 +36,10 @@ if [ "${virtualenv}" == "true" ] ; then
     pip3 install virtualenv
     virtualenv .
     source ./bin/activate
-    pip3 install -r ${REQUIREMENTS_PATH}
+    if [ ${REQUIREMENTS_PATH} != requirements.txt] ; then
+        cp ${REQUIREMENTS_PATH} .
+    fi
+    pip3 install -r requirements.txt
 fi
 
 if [ "${appium_enabled}" == "true" ] ; then
