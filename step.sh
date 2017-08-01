@@ -7,8 +7,6 @@ if [ "${debug}" == "true" ] ; then
     set -x
 fi
 
-REQUIREMENTS_PATH=requirements.txt
-
 PYTEST_OPT=""
 
 PYTEST_OPT+=" --ignore=bin --ignore=lib --ignore=include --ignore=selenium"
@@ -28,17 +26,10 @@ if [ -n "${files_and_dirs}" ] ; then
     PYTEST_OPT+=" ${files_and_dirs}"
 fi
 
-if [ -n "${requirements_path}" ] ; then
-    REQUIREMENTS_PATH="${requirements_path}"
-fi
-
 if [ "${virtualenv}" == "true" ] ; then
     pip3 install virtualenv
     virtualenv .
     source ./bin/activate
-    if [ ${REQUIREMENTS_PATH} != requirements.txt] ; then
-        cp ${REQUIREMENTS_PATH} .
-    fi
     pip3 install -r requirements.txt
 fi
 
